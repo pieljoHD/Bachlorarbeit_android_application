@@ -1,12 +1,16 @@
 package com.example.todolisttestapplication.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -59,6 +63,19 @@ fun LoginScreen(
                 unfocusedBorderColor = Color.White,
                 errorContainerColor = beige_hell
             ),
+            trailingIcon = {
+                if( username.value.isNotEmpty()) {
+                    Icon(
+                        Icons.Default.Clear,
+                        contentDescription = "clearButton",
+                        modifier = Modifier
+                            .testTag("clearButton")
+                            .clickable {
+                                username.value = ""
+                            }
+                    )
+                }
+            },
             value = username.value,
             placeholder = { Text(text = "Benutzername") },
             onValueChange = {

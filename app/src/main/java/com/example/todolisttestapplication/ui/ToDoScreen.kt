@@ -20,6 +20,8 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -63,6 +65,7 @@ fun TodoScreen(
     val todoList: MutableState<List<String>> = remember {
         mutableStateOf(listOf())
     }
+    //save,todoString,index
     val popUpState = remember {
         mutableStateOf(Triple(false, "", -1))
     }
@@ -171,6 +174,19 @@ fun ChangePopUp(popUpState: MutableState<Triple<Boolean, String, Int>>, todoList
                         focusedIndicatorColor = beige,
                         unfocusedIndicatorColor = beige
                     ),
+                    trailingIcon = {
+                        if(popUpState.value.second.isNotEmpty()) {
+                            Icon(
+                                Icons.Default.Clear,
+                                contentDescription = "clear text",
+                                modifier = Modifier
+                                    .testTag("clearButton")
+                                    .clickable {
+                                        popUpState.value = Triple(true, "", popUpState.value.third)
+                                    }
+                            )
+                        }
+                    },
                     shape = RoundedCornerShape(12.dp)
                 )
 
@@ -265,6 +281,19 @@ fun InputShit(todoList: MutableState<List<String>>) {
                 focusedIndicatorColor = beige_hell,
                 unfocusedIndicatorColor = beige_hell
             ),
+            trailingIcon = {
+                if(input.value.isNotEmpty()) {
+                    Icon(
+                        Icons.Default.Clear,
+                        contentDescription = "clear text",
+                        modifier = Modifier
+                            .testTag("clearButton")
+                            .clickable {
+                                input.value = ""
+                            }
+                    )
+                }
+            },
             shape = RoundedCornerShape(
                 topStart = 50.dp,
                 topEnd = 0.dp,
