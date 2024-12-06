@@ -23,8 +23,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -67,9 +65,9 @@ fun LoginScreen(
                 if( username.value.isNotEmpty()) {
                     Icon(
                         Icons.Default.Clear,
-                        contentDescription = "clearButton",
+                        contentDescription = "clearButtonUserName",
                         modifier = Modifier
-                            .testTag("clearButton")
+                            .testTag("clearButtonUserName")
                             .clickable {
                                 username.value = ""
                             }
@@ -93,6 +91,19 @@ fun LoginScreen(
             textStyle = TextStyle(
                 fontSize = 18.sp
             ),
+            trailingIcon = {
+                if(password.value.isNotEmpty()) {
+                    Icon(
+                        Icons.Default.Clear,
+                        contentDescription = "clearButtonPassword",
+                        modifier = Modifier
+                            .testTag("clearButtonPassword")
+                            .clickable {
+                                password.value = ""
+                            }
+                    )
+                }
+            },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = beige_hell,
                 unfocusedContainerColor = beige_hell,
