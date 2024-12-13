@@ -256,7 +256,7 @@ fun InputShit(todoList: MutableState<List<String>>) {
     ) {
         TextField(
             modifier = Modifier
-                .testTag("todoInput")
+                .testTag("TodoInput")
                 .fillMaxHeight()
                 .fillMaxWidth(0.75f),
             value = input.value,
@@ -295,7 +295,7 @@ fun InputShit(todoList: MutableState<List<String>>) {
         )
         Button(
             modifier = Modifier
-                .testTag("addButton")
+                .testTag("AddButton")
                 .fillMaxSize(),
             onClick = {
                 if (input.value.isNotEmpty()) {
